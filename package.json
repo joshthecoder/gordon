@@ -1,0 +1,7 @@
+{
+  "name": "gordon",
+  "workspaces": [
+    "packages/gordon-web",
+    "packages/gordon-api"
+  ]
+}
