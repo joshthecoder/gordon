@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { QueryClientProvider, QueryClient } from "react-query";
 import RecipeList from "./components/RecipeList";
 
-function App() {
-  const [count, setCount] = useState(0);
+const queryClient = new QueryClient();
 
+function App() {
   return (
-    <div>
-      <RecipeList />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div>
+        <RecipeList />
+      </div>
+    </QueryClientProvider>
   );
 }
 
