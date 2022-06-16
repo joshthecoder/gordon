@@ -2,7 +2,11 @@
 gordon-api
 
 @http
-get /
+get /recipes
+
+@static
+folder ../gordon-web/dist
+spa true
 
 @aws
 # profile default
