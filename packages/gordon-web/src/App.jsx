@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import RecipeList from "./components/RecipeList";
+import Recipes from "./pages/Recipes";
 import NewRecipe from "./pages/NewRecipe";
 
 const queryClient = new QueryClient();
@@ -13,7 +13,7 @@ function App() {
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
             <Routes>
-              <Route path="recipes" element={<RecipeList />} />
+              <Route path="recipes" element={<Recipes />} />
               <Route path="recipes/new" element={<NewRecipe />} />
             </Routes>
           </BrowserRouter>
