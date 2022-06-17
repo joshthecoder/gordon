@@ -4,6 +4,7 @@ gordon-api
 @http
 get /recipes
 post /recipes
+get /upload-url
 
 @static
 folder ../gordon-web/dist
@@ -13,9 +14,10 @@ spa true
 recipes
 	id *String
 	title String
+	previewImage String
 
 
 @aws
 # profile default
-region us-west-2
+region us-east-1
 architecture arm64

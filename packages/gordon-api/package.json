@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@architect/functions": "^5.1.0",
+    "aws-sdk": "^2.1156.0",
     "uuid": "^8.3.2"
   }
 }
