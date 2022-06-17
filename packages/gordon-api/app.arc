@@ -2,13 +2,13 @@
 gordon-api
 
 @http
-get /recipes
-post /recipes
-get /upload-url
+get /api/recipes
+post /api/recipes
+get /api/upload-url
 
 @static
-folder ../gordon-web/dist
 spa true
+folder ../gordon-web/dist
 
 @tables
 recipes
@@ -21,3 +21,7 @@ recipes
 # profile default
 region us-east-1
 architecture arm64
+bucket gordon-artifacts
+policies
+  arn:aws:iam::187872916272:policy/gordon-uploads
+	architect-default-policies

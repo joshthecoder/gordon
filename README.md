@@ -1,15 +1,25 @@
 # Gordon
+
 A cooking application to help store recipes, build shopping lists, and plan out meals.
 
 ** Work in-progress. Not all features are complete yet**
 
-## Technicals
+Staging preview: https://pn83gb63ek.execute-api.us-east-1.amazonaws.com/recipes
+
+### TODOS
+
+- Add authentication
+- Ingredients API + UI component
+- Deploy images via Cloudfront rather than direct S3 access
+- View recipe page
 
 ### Directories
+
 - packages/gordon-web: React front end for web application
 - packages/gordon-api: Lambda backend for API
 
 ### Stack
+
 - AWS Lambda
 - DynamoDB
 - React
