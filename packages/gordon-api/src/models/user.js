@@ -1,11 +1,13 @@
 const arc = require("@architect/functions");
 const bcrypt = require("bcryptjs");
 
-export async function getUserById(id) {
+module.exports = { getUserByEmail, createUser, verifyLogin };
+
+async function getUserById(id) {
   const tables = await arc.tables();
-  const result = await arc.tables.users.query({
+  const result = await tables.users.query({
     KeyConditionExpression: "id = :id",
-    ExpressionAttributesValues: { ":id": id },
+    ExpressionAttributeValues: { ":id": id },
   });
 
   const [record] = result.Items;
@@ -13,15 +15,15 @@ export async function getUserById(id) {
   return null;
 }
 
-export async function getUserByEmail(email) {
+async function getUserByEmail(email) {
   return getUserById(`email#${email}`);
 }
 
-export async function getUserPasswordByEmail(email) {
+async function getUserPasswordByEmail(email) {
   const tables = await arc.tables();
   const result = await tables.passwords.query({
     KeyConditionExpression: "userId = :userId",
-    ExpressionAttributesValues: { ":userId": `email#${email}` },
+    ExpressionAttributeValues: { ":userId": `email#${email}` },
   });
 
   const [record] = result.Items;
@@ -30,7 +32,7 @@ export async function getUserPasswordByEmail(email) {
   return null;
 }
 
-export async function createUser({ email, password }) {
+async function createUser({ email, password }) {
   const id = `email#${email}`;
 
   const hassPass = await bcrypt.hash(password, 10);
@@ -49,7 +51,7 @@ export async function createUser({ email, password }) {
   return user;
 }
 
-export async function verifyLogin({ email, password }) {
+async function verifyLogin({ email, password }) {
   const userPass = await getUserPasswordByEmail(email);
 
   if (!userPass) return undefined;
