@@ -4,8 +4,6 @@ A cooking application to help store recipes, build shopping lists, and plan out 
 
 ** Work in-progress. Not all features are complete yet**
 
-Staging preview: https://pn83gb63ek.execute-api.us-east-1.amazonaws.com/recipes
-
 ### TODOS
 
 - Add authentication
@@ -27,3 +25,4 @@ Staging preview: https://pn83gb63ek.execute-api.us-east-1.amazonaws.com/recipes
 - React Router
 - Tailwind CSS
 - Vite
+- Jest
