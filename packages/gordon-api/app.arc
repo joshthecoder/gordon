@@ -5,6 +5,7 @@ gordon-api
 get /api/recipes
 post /api/recipes
 get /api/upload-url
+post /api/login
 
 @static
 spa true

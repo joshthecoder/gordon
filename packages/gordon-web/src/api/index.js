@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export async function getRecipes() {
   const response = await fetch("/api/recipes");
   if (!response.ok) {
@@ -53,4 +55,8 @@ export async function uploadFile(file) {
   }
 
   return { url, key: fields.key };
+}
+
+export async function login({ email, password }) {
+  return axios.post("/api/login", { email, password });
 }
