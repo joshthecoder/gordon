@@ -35,7 +35,7 @@ async function getUserPasswordByEmail(email) {
 async function createUser({ email, password }) {
   const id = `email#${email}`;
 
-  const hassPass = await bcrypt.hash(password, 10);
+  const hashPass = await bcrypt.hash(password, 10);
   const tables = await arc.tables();
 
   await tables.passwords.put({
@@ -47,6 +47,9 @@ async function createUser({ email, password }) {
     id,
     email,
   });
+
+  const user = await getUserByEmail(email);
+  if (!user) throw new Error("Unexpected error creating user");
 
   return user;
 }
