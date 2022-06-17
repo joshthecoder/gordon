@@ -16,6 +16,12 @@ recipes
 	title String
 	previewImage String
 
+users
+  id *String
+
+passwords
+	userId *String
+
 
 @aws
 # profile default
