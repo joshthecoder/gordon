@@ -11,6 +11,7 @@ import Recipes from "./pages/Recipes";
 import NewRecipe from "./pages/NewRecipe";
 import Login from "./pages/Login";
 import useGetUser from "./hooks/useGetUser";
+import Signup from "./pages/Signup";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ function App() {
                 }
               />
               <Route path="login" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
             </Routes>
           </BrowserRouter>
         </QueryClientProvider>

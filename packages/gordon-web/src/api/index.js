@@ -45,3 +45,7 @@ export async function uploadFile(file) {
 export async function login({ email, password }) {
   return axios.post("/api/login", { email, password });
 }
+
+export async function signup({ email, password }) {
+  return axios.post("/api/user", { email, password });
+}
