@@ -20,7 +20,7 @@ export async function getUploadUrl(contentType) {
 
 export async function uploadFile(file) {
   const signedUrlDetails = await getUploadUrl(file.type);
-  const { url, fields } = signedUrlDetails;
+  const { url, fields } = signedUrlDetails.data;
 
   const formData = new FormData();
   Object.keys(fields).forEach((key) => {

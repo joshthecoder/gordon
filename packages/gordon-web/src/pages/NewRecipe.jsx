@@ -37,8 +37,8 @@ export default function NewRecipe() {
 
           <div className="mb-6">
             <label
-              class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
-              for="default_size"
+              className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
+              htmlFor="image"
             >
               Preview Image
             </label>

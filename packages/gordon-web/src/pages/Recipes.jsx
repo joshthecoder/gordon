@@ -1,11 +1,12 @@
 import { useQuery } from "react-query";
 
 import { getRecipes } from "@/api";
+import useAPI from "@/hooks/useAPI";
 import RecipeCard from "@/components/RecipeCard";
 
 export default function Recipes() {
-  const query = useQuery("recipes", getRecipes);
-  if (query.isLoading || query.isError) return null;
+  const { isLoading, isError, data } = useAPI("/api/recipes");
+  if (isLoading || isError) return null;
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -20,7 +21,7 @@ export default function Recipes() {
         </div>
 
         <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          {query.data.map((recipe) => (
+          {data.map((recipe) => (
             <RecipeCard key={recipe.id} {...recipe} />
           ))}
         </div>
