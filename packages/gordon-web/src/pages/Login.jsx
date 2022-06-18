@@ -1,14 +1,16 @@
 import { Field, Form, Formik } from "formik";
 import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { login } from "../api";
 
 export default function Login() {
+  const location = useLocation();
   const navigate = useNavigate();
   const mutation = useMutation(login, {
     onSuccess() {
-      navigate("/recipes");
+      const redirectTo = location.state?.from?.pathname || "/recipes";
+      navigate(redirectTo);
     },
   });
 
