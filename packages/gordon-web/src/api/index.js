@@ -1,36 +1,21 @@
 import axios from "axios";
 
+export async function getUser() {
+  return axios.get("api/user");
+}
+
 export async function getRecipes() {
-  const response = await fetch("/api/recipes");
-  if (!response.ok) {
-    throw new Error("Error fetching recipes");
-  }
-  return response.json();
+  return axios.get("/api/recipes");
 }
 
 export async function createRecipe(recipe) {
-  const response = await fetch("/api/recipes", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(recipe),
-  });
-  if (!response.ok) {
-    throw new Error("Error creating recipe");
-  }
-  return response.json();
+  return axios.post("/api/recipes", recipe);
 }
 
 export async function getUploadUrl(contentType) {
-  const response = await fetch(
+  return axios.get(
     `/api/upload-url?contentType=${encodeURIComponent(contentType)}`
   );
-  if (!response.ok) {
-    throw new Error("Error fetching upload url");
-  }
-  return response.json();
 }
 
 export async function uploadFile(file) {

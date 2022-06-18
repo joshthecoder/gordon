@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import Recipes from "./pages/Recipes";
 import NewRecipe from "./pages/NewRecipe";
 import Login from "./pages/Login";
+import useGetUser from "./hooks/useGetUser";
 
 const queryClient = new QueryClient();
 
@@ -14,8 +21,22 @@ function App() {
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
             <Routes>
-              <Route path="recipes" element={<Recipes />} />
-              <Route path="recipes/new" element={<NewRecipe />} />
+              <Route
+                path="recipes"
+                element={
+                  <RequireAuth>
+                    <Recipes />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="recipes/new"
+                element={
+                  <RequireAuth>
+                    <NewRecipe />
+                  </RequireAuth>
+                }
+              />
               <Route path="login" element={<Login />} />
             </Routes>
           </BrowserRouter>
@@ -23,6 +44,19 @@ function App() {
       </React.StrictMode>
     </div>
   );
+}
+
+function RequireAuth({ children }) {
+  const location = useLocation();
+  const { error, isLoading } = useGetUser();
+
+  if (isLoading) return null;
+
+  if (error) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return children;
 }
 
 export default App;

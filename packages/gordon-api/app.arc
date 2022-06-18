@@ -6,6 +6,7 @@ get /api/recipes
 post /api/recipes
 get /api/upload-url
 post /api/login
+get /api/user
 
 @static
 spa true
