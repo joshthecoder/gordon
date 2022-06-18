@@ -2,6 +2,8 @@ const arc = require("@architect/functions");
 const AWS = require("aws-sdk");
 const { v4: uuid } = require("uuid");
 
+const { requireAuth } = require("../middleware");
+
 AWS.config.update({ region: process.env.AWS_REGION });
 
 const s3 = new AWS.S3();
@@ -9,7 +11,7 @@ const s3 = new AWS.S3();
 const URL_EXPIRATION_SECONDS = 300;
 const ALLOWED_FILE_TYPES = ["image/jpeg", "image/gif", "image/png"];
 
-exports.handler = arc.http.async(handler);
+exports.handler = arc.http.async(requireAuth, handler);
 
 async function handler(req) {
   const contentType = req.query.contentType;
